@@ -1,0 +1,1206 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head language="JavaScript"> 
+<title> UW Fammed Pager </title>
+<link rel="apple-touch-icon" href="http://www.hajimefurukawa.com/mazz11235/fammed/apple-touch-icon.png">
+<meta name = "viewport" content="width=device-width; width=320; height=416;initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<link media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" rel="stylesheet"> 
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<script language="JavaScript">
+
+function MM_setTextOfTextfield(objId,x,newText) { //v9.0
+  var splitarray = newText.split("|");
+  with (document){ if (getElementById){
+    var obj = getElementById(objId);
+    var ph = getElementById('phone');
+  }
+    if (obj) obj.value = splitarray[0];
+    if (ph) ph.innerHTML = "<a href=\"tel:" + splitarray[1] + "\">" + splitarray[1] + "<\/a>" + " ";
+    if (ph && splitarray[2]) ph.innerHTML = "<a href=\"tel:" + splitarray[1] + "\">" + splitarray[1] + "<\/a> " + splitarray[2];
+    if (ph && splitarray[3]) ph.innerHTML = "<a href=\"tel:" + splitarray[1] + "\">" + splitarray[1] + "<\/a> " + splitarray[2] + "<br><a href=\"tel:" + splitarray[3] + "\">" + splitarray[3] + "<\/a> ";
+    if (ph && splitarray[4]) ph.innerHTML = "<a href=\"tel:" + splitarray[1] + "\">" + splitarray[1] + "<\/a> " + splitarray[2] + "<br><a href=\"tel:" + splitarray[3] + "\">" + splitarray[3] + "<\/a> " + splitarray[4];
+  }
+}
+
+window.addEventListener('load', function() {
+    setTimeout(scrollTo, 0, 0, 1);
+}, false);
+
+window.onload = function initialLoad() {
+    updateOrientation();
+}
+
+$(document).bind(
+  'touchmove',
+  function(e) {
+  e.preventDefault();
+  }
+);
+
+if (navigator.userAgent.indexOf('iPhone') != -1) {
+        addEventListener("load", function() {
+                setTimeout(hideURLbar, 0);
+        }, false);
+}
+
+function hideURLbar() {
+        window.scrollTo(100, 1);
+        self.navigationController.navigationBar.hidden=YES;
+}
+
+function CheckMessageLength(theForm)
+      {
+  theForm.count.value= theForm.msg.value.length;
+}
+
+function keyHole(evt) {
+   if (navigator.appName == "Netscape") {
+    if (evt.which == 13) {
+      evt.which = 0;
+      if (Form1_Validator(document.forms.Form1)) {
+        document.forms.Form1.submit();
+      }
+    }
+  } else {
+    if (evt.keyCode == 13) {
+      evt.keyCode = 0;
+      if( confirm ("OK to Send!") ) {
+        if (Form1_Validator(document.forms.Form1)) {
+          document.forms.Form1.msg.focus();
+          document.forms.Form1.submit();    
+        }
+      }      
+    }
+  }
+  return true;
+}
+
+function keyPin(evt) {
+  if (navigator.appName == "Netscape") {
+    if (evt.which == 13) {    
+      document.forms.Form1.msg.focus();
+      evt.which = 0;
+    }
+  } else {
+    if (evt.keyCode == 13) {
+      document.forms.Form1.msg.focus();
+      evt.keyCode = 0;
+    }
+  }
+  return true;
+}
+
+function Form1_Validator(theForm) {
+  if (theForm.pin.value == ""){
+    alert("Please enter a pin number.");
+    theForm.pin.focus();
+    return (false);
+  }
+
+  if (theForm.pin.value.length > 11){
+    alert("Invalid pin number.  The pin number is the last seven digits of your pager number.");
+    theForm.pin.focus();
+    return (false);
+  }
+
+  if (theForm.msg.value.length > 120){
+    var answer = confirm("Message is over 120 Characters! Do you wish to Continue?")
+     if (answer){
+        return(true);     
+     }else{
+        return(false);
+     }
+  }
+
+  if (theForm.msg.value == ""){
+    alert("Please enter a message to send to the pager.");
+    theForm.msg.focus();
+    return (false);
+  }
+
+  return (true);
+}
+
+function blockMove() {
+       event.preventDefault() ;
+}
+
+document.body.addEventListener('touchmove', function(e){ e.preventDefault(); });
+
+</script>
+</head>
+
+<body ontouchmove="blockMove()" height="100%">
+<table border="0">
+  <tbody>
+    <tr><td bgcolor="#FFFFFF">
+
+      <form method="GET" action="http://www.jsmcom.com/sendpage/addsendpage.asp" onSubmit="return Form1_Validator(this)" name="Form1">
+      <img src="fammed_logo_h_out.jpg" alt="Inside DFM" width="320px" longdesc="http://inside.fammed.wisc.edu">
+      <br>
+      <br>
+
+  <div align="left">
+      <font color="#000000" face="arial, arial, helvetica"><strong>Pager Pin Number: </strong><small>(7-digit number)</small><br></font>
+  </div>
+  
+  <div align="left">
+    <font color="#000000" face="arial, arial, helvetica">
+      <input name="pin" type="text" id="pin" style="background-color: rgb(f, f, f);" tabindex="0" onKeyPress="return keyPin(event)" size="10" maxlength="10">
+    </font>
+    <b id='phone'></b>
+    <br>
+    <font color="#000000" face="arial, arial, helvetica">
+    
+    <select name="contactlist" id="contactlist" onChange="MM_setTextOfTextfield('pin','',value);">
+      <option selected>-- Select Name --</option>
+      <option value="376-9110|608-215-5891|||">Almasi, Steve (V)</option>
+<option value="376-9285|608-751-7056|||">Anderson, Jane (V)</option>
+<option value="3769206|608-469-9380|||">Arndt, Brian (V)</option>
+<option value="3769170|608-257-1646|||">Barrett, Bruce</option>
+<option value="376-9196|971-322-8764|||">Barry, Ann (NE)</option>
+<option value="3769177|608-469-5635|||">Beasley, John (V) </option>
+<option value="No Pager|608-424-3384|(ofc.)||">Binkowski, Madonna (B)</option>
+<option value="376-9274||||">Brodt, Erik</option>
+<option value="3769246|608-333-3292|||">Brown, Randy (W)</option>
+<option value="376-9104|715-379-6148|||">Carlson, Jensena (B)</option>
+<option value="3769175|608-438-8696|||">Carr, Kathleen (V)</option>
+<option value="3769174|608-279-7416|||">Carufel-Wert, Don (V) </option>
+<option value="No Pager|608-279-7415|(cell)|608-831-5662|">Carufel-Wert, Terri (W)</option>
+<option value="376-9288|440-669-1285|||">Combs, Meaghan (OA fellow)</option>
+<option value="376-9201|860-391-4124|||">Conniff, James (NE)</option>
+<option value="No Pager|608-438-8737|||">Cooney, Janice (V)</option>
+<option value="No Pager|608-550-2596|(cell)|608-838-3158|(ofc.)">Counts, Helen</option>
+<option value="376-7823|608-273-3448|||">Crouse, Byron (B)</option>
+<option value="376-9223|603-315-1632|||">D'Agata, Caitlin (NE fellow)</option>
+<option value="376-9308|608-332-0225|||">Dalby, Jessica (W Fellow)</option>
+<option value="376-1272|608-963-9732|||">Damos, Jim (Boo)</option>
+<option value="376-9101|608-576-6358|||">Danielson, Dave (Boo)</option>
+<option value="376-7810|608-630-7007|||">Deci, David (B)</option>
+<option value="376-9106|267-761-8800|||">Dhanoa, LeRose (NE)</option>
+<option value="No Pager|608-886-5985|(cell)|608-443-5550| (ofc.)">Doxtater, Lana (ACHC)</option>
+<option value="3769248|608-234-2086|||">Dresang, Lee (W)</option>
+<option value="No Pager|608-556-5200|(cell)|608-238-3057|">Edgoose, Jennifer (NE)</option>
+<option value="3769184|608-628-4280||608-848-8344|(home)">Evensen, Ann (V)</option>
+<option value="376-9135|608-692-4138|||">Flanagan, Laura (V)</option>
+<option value="376-9235|608-213-6981|||">Fleming, Elizabeth (V)</option>
+<option value="376-9107|313-655-5715|||">Fox, Kelita (NE)</option>
+<option value="3769249|608-238-6308|||">Frey, John (W)</option>
+<option value="376-9209|608-215-2346|||">GaleWyrick, Sarah (B fellow)</option>
+<option value="No Pager|608-556-4721|(cell)||">Gaus, David</option>
+<option value="376-9242||||">Giblin, Mary (W)</option>
+<option value="No Pager|608-630-5749|(cell)||">Gilchrist, Valerie</option>
+<option value="376-9122|304-282-7372|||">Go, Lisa (B)</option>
+<option value="376-9137|913-601-0488|||">Gonzalez, Rene (W)</option>
+<option value="376-9236|608-395-1666|||">Hahn, Thomas (V)</option>
+<option value="376-9133|307-349-9931|||">Hammer, Erin (V)</option>
+<option value="376-9114|804-986-8653|||">Hampton, Adrienne (W)</option>
+<option value="No Pager|252-412-8696|(cell)||">Hamrick, Irene</option>
+<option value="376-0838|608-658-9687|||">Hannah, Stuart (Boo)</option>
+<option value="No Pager|608-206-3527|(cell)|414-962-2855|">Haq, Cindy</option>
+<option value="376-9102|915-637-1133|||">Harden, Wesley (Boo)</option>
+<option value="376-9125|434-660-8844|||">Hartline, Rachel (Boo)</option>
+<option value="3769290|415-516-3247|||">Hayon, Ronni (NE)</option>
+<option value="376-9129|303-653-1305|||">Huffer, Patrick (NE)</option>
+<option value="376-9134|907-360-0114|||">Humpal, Steve (V)</option>
+<option value="376-9226|608-235-6697|||">Jensen, Megan (NE)</option>
+<option value="No Pager|608-576-5006|(cell)|608-222-8779|ofc">Kamnetz, Sandy</option>
+<option value="376-7225|978-996-2256|||">Kinsey, Bill (ACHC)</option>
+<option value="376-9255|608-843-1402|||">Kolan, Anne (OA fellow)</option>
+<option value="No Pager|608-263-3111|# 154 (ofc.)|608-215-6829|">Kraus, Connie (W)</option>
+<option value="3769267|608-206-9217|||">Kuphal, Greta (OA)</option>
+<option value="No Pager|608-235-2905|||">Kushner, Ken (W)</option>
+<option value="376-9116|918-728-4713|||">Kvach, Elizabeth (W)</option>
+<option value="376-9202|510-316-3446|||">Lawler, Taryn (NE)</option>
+<option value="376-9136|224-622-3277|||">Lee, Eugene (V)</option>
+<option value="No Pager|608-207-0493|(cell)|608-263-3111|(ofc.)">Lee, Jonas (W)</option>
+<option value="No Pager|630-414-4695|(cell)||">Lemmon, Russ (NE)</option>
+<option value="No Pager|734-646-6449|(cell)||">Lessens, Dave (OA fellow)</option>
+<option value="376-7814|503-290-8225|||">Lochner, Jennifer (B)</option>
+<option value="376-7252|608-576-2672|||">Loving, Ken (ACHC)</option>
+<option value="376-7819|608-335-4641|||">Marchand, Lu </option>
+<option value="376-9182|608-212-7010|||">Martonffy, Ildi (W)</option>
+<option value="376-9108|573-298-2205|||">Marty, Eric (NE)</option>
+<option value="376-9138|248-819-1830|||">Mashni, Melissa (W)</option>
+<option value="376-9275|860-558-9012|||">Mastrocola, Jennifer (W)</option>
+<option value="376-9120|502-435-5484|||">Matera, Elizabeth (Boo)</option>
+<option value="376-9130|608-886-5363|||">McKenna, John (NE)</option>
+<option value="376-9117|205-908-7809|||">Meiman, Jon (W)</option>
+<option value="No Pager|608-262-8345|(ofc.)|608-575-6183|">Nielsen, Julie </option>
+<option value="376-9213||||">O'Connor, Ann (NE)</option>
+<option value="No Pager|608-424-3384|#123 (ofc.)|608-347-1392|">O'Connor, Joan (B)</option>
+<option value="3769278||||">Olcott, Steve (B)</option>
+<option value="No Pager|608-354-6662|(cell)|608-231-3184|(home)">Oriel, Kathy (NE)</option>
+<option value="376-9176|608-332-6951|||">Pandhi, Nancy</option>
+<option value="376-9211|608-206-2101|||">Patterson, Jeff (NE)</option>
+<option value="376-9126|206-459-6305|||">Pfaff, Rebecca (Boo)</option>
+<option value="376-9127|920-946-5344|||">Pittner-Smith, Christa (B)</option>
+<option value="376-7259|608-213-4424|||">Poi, Elizabeth (ACHC)</option>
+<option value="3769253|608-338-3464|||">Potter, Beth (W)</option>
+<option value="376-9247|608-609-0945|||">Prewitt, Kristen (V)</option>
+<option value="376-9103|515-423-5710|||">Puyear, Micah (Boo)</option>
+<option value="No Pager|608-843-0850|(cell)|608-245-2463|(home)">Rabago, David (NE) </option>
+<option value="3769181|608-335-2208|||">Rakel, David (OA) </option>
+<option value="376-9115|281-413-5622|||">Ray, Katie (W)</option>
+<option value="3769219|608-658-1614|||">Redmer, Jackie (OA Fellow)</option>
+<option value="No Pager|608-213-9688|(cell)|608-274-1100|(ofc.)">Rindfleisch, Adam (OA)</option>
+<option value="No Pager|608-279-9120|(cell)||">Rindfleisch, Kirsten (W)</option>
+<option value="376-7812|608-320-9247|||">Roberts, Rich (B)</option>
+<option value="376-9277|503-380-3366|||">Ronick, Mischa (W)</option>
+<option value="No Pager|608-215-9275|(cell)|608-241-9020|(ofc.)">Sanner, Lou (NE)</option>
+<option value="376-9280|608-695-0581|||">Sater, Karina (W)</option>
+<option value="376-9109|503-913-2941|||">Schaefer, Elizabeth (NE)</option>
+<option value="3769179|608-335-7507|||">Scheibel, Bill (V) </option>
+<option value="376-9111|608-770-7706|||">Scherschligt, Benji (V)</option>
+<option value="376-9139|504-458-0964|||">Schimek, Trisha (W)</option>
+<option value="376-9269|607-435-1712|||">Schmitt, Andrew (V)</option>
+<option value="3769224|608-957-2416|||">Schrager, Sarina (NE)</option>
+<option value="376-9112|319-504-7506|||">Schupp, Will (V)</option>
+<option value="3769225|608-843-4346|||">Schwab, Bill (NE)</option>
+<option value="376-9131|630-280-9083|||">Shah, Sagar (NE)</option>
+<option value="No Pager|608-576-7948|(cell)||">Shapleigh, Mark (V) </option>
+<option value="376-9270|775-997-3976|||">Sharp, Samantha (OA fellow)</option>
+<option value="3769189|608-445-7081|||">Smith, Doug (V) </option>
+<option value="376-7813|608-482-2204|||">Soehnlein, Peggy (B)</option>
+<option value="3769292|973-768-3954|||">Sridhar, Srivani (OA Fellow)</option>
+<option value="376-7818|608-469-0829|||">Stiles, Melissa (B)</option>
+<option value="3769188||||">Stokes, Heidi (V)</option>
+<option value="376-9123|608-334-0593|||">Swedlund, Matthew (B)</option>
+<option value="376-9141|920-246-7654|||">Takahashi, Jonathan (W)</option>
+<option value="3769256|608-469-0561|||">Tellez-Giron, Patricia (W)</option>
+<option value="3769257|608-577-5846|||">Temte, Jon (W)</option>
+<option value="376-9234|715-212-5971|||">Thao, Kevin (NE)</option>
+<option value="376-9132|419-565-2336|||">Thurman, Zack (NE)</option>
+<option value="376-9298|608-515-4027|||">Trafficante, Sean (W)</option>
+<option value="376-9128|608-698-2541|||">Tumas, Aistis (B)</option>
+<option value="376-9121|608-843-6460|||">Vakharia, Nathan (Boo)</option>
+<option value="376-9227|608-575-6404|(cell)||">Van Dinter, Maureen (NE)</option>
+<option value="3769259|608-235-7802|||">Vasquez, Mary (W)</option>
+<option value="3769260|608-255-6334|||">Vitcenda, Angela (W)</option>
+<option value="3769228|608-609-9991|||">Wagner Novak, JoAnn (NE)</option>
+<option value="3769204|608-628-4463|||">Weber, Michael (OA)</option>
+<option value="376-9105|608-345-7967|||">Webster, Bryan (B)</option>
+<option value="3769261|608-845-2086|||">Wendler, Karen (V)</option>
+<option value="376-9113|815-541-9774|||">Weston, Tony (V)</option>
+<option value="No Pager|608-240-0035|(ofc.)|608-275-0093|">Wiggins, Lara </option>
+<option value="376-9250|608-225-1582|||">Wolf, Colleen (W)</option>
+<option value="376-9271|262-385-6532|||">Wolfe, Joseph (V)</option>
+<option value="No Pager|608-355-7265|(ofc.)||">Womble, Angie (Boo)</option>
+<option value="376-9244|608-295-7546|||">Yates, Julia (V)</option>
+<option value="No Pager|608-332-6941|(cell)||">Young, Alex (ACHC)</option>
+<option value="376-9144||||">All Residents</option>
+<option value="376-9148||||">2013 Residents</option>
+<option value="376-9150||||">2014 Residents</option>
+<option value="376-9155||||">2015 Residents</option>
+<option value="376-9158||||">Northeast Faculty</option>
+<option value="376-9160||||">Northeast Residents</option>
+<option value="376-9154||||">Verona Faculty</option>
+<option value="376-9156||||">Verona Residents</option>
+<option value="376-9162||||">Wingra Faculty</option>
+<option value="376-9164||||">Wingra Residents</option>
+<option value="376-9166||||">Belleville Faculty</option>
+<option value="376-9168||||">Belleville Residents</option>
+<option value="376-9194||||">Baraboo Residents</option>
+<option value="376-9124||||">Residency Staff Pager</option>
+<option value="No Pager|608-262-2694|ofc.||">Ballwahn, Randy </option>
+<option value="No Pager|608-265-2709|||">Daniels, Vicki</option>
+<option value="No Pager|608-263-6261||608-235-0022|(cell)">Grosch, Michelle</option>
+<option value="No Pager|608-262-3166|||">Klescewski, Katie</option>
+<option value="No Pager|608-263-1659|||">McGrath, Chris</option>
+<option value="No Pager|608-263-5748|||">Samuelson, Dan</option>
+<option value="No Pager|608-263-9980|||">Tiedemann, Lisa</option>
+<option value="No Pager|608-263-1170||608-843-4251|(cell)">Vincent, Amy</option>
+<option value="No Pager|608-265-6628|||">White, Jenny</option>
+<option value="No Pager|608-262-3139||608-245-1714|">Williams, Heather</option>
+<option value="No Pager|608-424-3384||608-424-3857|(AH)">Belleville</option>
+<option value="No Pager|608-241-9020||608-240-4225|(AH)">Northeast    </option>
+<option value="No Pager|608-845-9531||608-845-9535|(AH)">Verona</option>
+<option value="No Pager|608-263-3111||608-263-3111|(AH)">Wingra</option>
+<option value="No Pager|608-839-3104||608-839-3104|(AH)">UW Health Cottage Grove</option>
+<option value="No Pager|608-443-5480||608-443-5480|(AH)">Access</option>
+<option value="No Pager|608-274-1100||608-274-1100|(AH)">Odana Atrium</option>
+<option value="No Pager|608-424-9102|||">Belleville Direct Physician Line -</option>
+<option value="No Pager|608-417-6228|||">Meriter OB Triage </option>
+<option value="376-9185||||">Newborn Pager</option>
+<option value="376-9302||||">UW Family Medicine After Hours Resident Pager</option>
+<option value="No Pager|608-263-4550||608-263-5813|(Fax)">DFM Reception</option>
+<option value="No Pager|608-829-5474|||">UWMF Computer Support</option>
+<option value="No Pager|608-257-9700|||">GHC Urgent Care  </option>
+<option value="No Pager|608-257-7191|||">Medical Answering Service</option>
+<option value="No Pager|608-258-6295||608-259-3491|(Fax)">SMFM Res.Conf. (8642)</option>
+<option value="No Pager|608-258-6100|||">SM Paging/Switchbrd     </option>
+<option value="No Pager|608-258-6682|||">SM Security</option>
+<option value="No Pager|608-263-8770||608-263-8775|(bed contrl)">UW Hosp. Admissions</option>
+<option value="No Pager|608-262-2398|||">UWER </option>
+<option value="No Pager|608-262-2122|||">UW Paging Operator </option>
+<option value="No Pager|608-262-0230||608-262-0714|(Fax)">UW FMS Conference Room</option>
+<option value="No Pager|608-263-3260|||">UW Access Center </option>
+    </select>
+  </font>
+  <br>
+  <font color="#000000" face="arial, arial, helvetica"><strong>Message:</strong> <small>(120-character limit)</small><br>
+  </font>
+  
+  <div align="left">
+    <textarea rows="3" name="msg" cols="24" wrap="soft" input="" onKeyUp="CheckMessageLength(this.form)" onKeyPress="return keyHole(event)" align="middle">
+    </textarea><br>
+    <input name="count" value="0" size="3" disabled="disabled" type="label">
+    <input value="Send Page" id="submit" STYLE="background-color:#FF0000; color: #ffffff; font-size: 120%" name="B1" type="submit">
+    <input value="Clear" name="B2" type="reset">
+  </div>
+
+  </form>
+  </td></tr></tbody></table>
+</body></html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head><link href="App_Themes/Blue3Theme/Blue3Theme.css" type="text/css" rel="stylesheet" /><meta http-equiv="Page-Exit" content="blendTrans(Duration=0.01)" /><title>
+	WebXchange
+</title><meta http-equiv="Page-Exit" content="blendTrans(Duration=0.01)" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><link href="App_Themes/UWHCTheme/UWHCTheme%20-%20Copy.css" type="text/css" rel="stylesheet" /><link href="App_Themes/UWHCTheme/UWHCTheme.css" type="text/css" rel="stylesheet" /><style type="text/css">
+	.ctl00_MenuNavigation_0 { background-color:white;visibility:hidden;display:none;position:absolute;left:0px;top:0px; }
+	.ctl00_MenuNavigation_1 { text-decoration:none; }
+	.ctl00_MenuNavigation_2 {  }
+	.ctl00_MenuNavigation_3 { border-style:none; }
+	.ctl00_MenuNavigation_4 { padding:1px 1px 1px 1px; }
+	.ctl00_MenuNavigation_5 {  }
+	.ctl00_MenuNavigation_6 { border-style:none; }
+	.ctl00_MenuNavigation_7 {  }
+	.ctl00_MenuNavigation_8 { border-style:none; }
+	.ctl00_MenuNavigation_9 {  }
+
+</style></head>
+<body>
+	<form name="aspnetForm" method="post" action="./ViewProfile.aspx?profileid=6276X" id="aspnetForm">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTkzMzIzMDI4NQ8WDB4SVmlld1N0YXRlUHJvZmlsZUlkBQU2Mjc2WB4WVmlld1N0YXRlUHJvZmlsZUV4aXN0c2ceD1ZpZXdTdGF0ZUZvcm1hdAUBMR4KZGVwYXJ0bWVudAUXT1ItQUZDSCBPUEVSQVRJTkcgUk9PTVMeB1BhZ2VySUQFBDYyNzYeFFZpZXdTdGF0ZURpc3BsYXlNZW51ZxYCZg8PFgIeCXByb2ZpbGVpZAUFNjI3NlhkFgICAw9kFgwCAw9kFgJmDzwrAAkBAA8WBB4IRGF0YUtleXMWAB4LXyFJdGVtQ291bnQCA2QWBmYPZBYCAgEPDxYCHgRUZXh0ZWRkAgEPZBYCAgEPDxYCHwllZGQCAg9kFgICAQ8PFgIfCWVkZAIFD2QWBgILDw8WAh8JZWRkAhEPD2QWAh4Hb25jbGljawUIem9vbWluKClkAhMPD2QWAh8KBQl6b29tb3V0KClkAgcPDxYCHgdWaXNpYmxlaGQWAgIBDzwrAAkAZAIJD2QWAmYPZBYEAgUPDxYCHwkFDFZpZXcgUHJvZmlsZWRkAgkPDxYCHgdUb29sVGlwBQlTaG93IGhlbHAWAh4HT25DbGljawUvcmV0dXJuIG9wZW5oZWxwd2luZG93KCdIZWxwL3dlYnhjaGFuZ2UuaHRtJywnJylkAg0PPCsADQMADxYCHwtnZAkQFgAWAGQMFCsAAwUHMDowLDA6MRQrAAIWCh8JBQdQcm9maWxlHgpTZWxlY3RhYmxlaB4LTmF2aWdhdGVVcmxlHgVWYWx1ZQUHcHJvZmlsZR4RU2VwYXJhdG9ySW1hZ2VVcmwFFn4vSW1hZ2VzL1NlcGFyYXRvci5naWYUKwADBQcwOjAsMDoxFCsAAhYIHwkFHkNoYW5nZSZuYnNwO1BhZ2luZyZuYnNwO1N0YXR1cx8OZx8PBSl+L0NvbmZpcm1QYWdlcklkLmFzcHg/UHJvZmlsZUlkPTYyNzZYJmE9Yx8QBRJjaGFuZ2VwYWdpbmdzdGF0dXNkFCsAAhYIHwkFF0V4Y2VwdGlvbiZuYnNwO1NjaGVkdWxlHw5nHw8FKX4vQ29uZmlybVBhZ2VySWQuYXNweD9Qcm9maWxlSWQ9NjI3NlgmYT1lHxAFEWV4Y2VwdGlvbnNjaGVkdWxlZBQrAAIWCh8JBQRIb21lHw5nHw8FDn4vRGVmYXVsdC5hc3B4HxAFBnNlYXJjaB8RZWRkAhEPZBYmAgEPD2QWBB4LT25Nb3VzZU92ZXIFF1RpcCgnQmxhY2snLCBERUxBWSwxMDApHgpvbm1vdXNlb3V0BQdVblRpcCgpFgQCAw8WAh8JBSs8Zm9udCBzaXplPSArMSBjb2xvcj0jMDAwMDAwPiZkaWFtczs8L2ZvbnQ+ZAIFDw8WAh8JBQ5MQVVGRiwgS0FUSFJZTmRkAgUPFgIfC2hkAgcPFgIfC2gWAmYPZBYEAgEPD2QWBh8SBTZUaXAoJ0NsaWNrIHRvIHZpZXcgQWRkaXRpb25hbCBJbmZvcm1hdGlvbicsIERFTEFZLDEwMCkfEwUHVW5UaXAoKR8NBQxyZXR1cm4gZmFsc2VkAgMPDxYCHwkFFkFkZGl0aW9uYWwgaW5mb3JtYXRpb24WBh8SBTZUaXAoJ0NsaWNrIHRvIHZpZXcgQWRkaXRpb25hbCBJbmZvcm1hdGlvbicsIERFTEFZLDEwMCkfEwUHVW5UaXAoKR8NBQxyZXR1cm4gZmFsc2VkAgsPFgIfC2gWAmYPZBYCAgEPPCsAEQEBEBYAFgAWAGQCDQ88KwAJAQAPFgQfBxYAHwgCBWQWCmYPZBYIAgEPDxYEHwkFC0RlcGFydG1lbnQ6HwtoZGQCAw8PFgQfCQUXT1ItQUZDSCBPUEVSQVRJTkcgUk9PTVMfC2hkZAIFDw8WBB8JBQlEZXB0IEZheDofC2hkZAIHDw8WCB8JBQYmbmJzcDseCENzc0NsYXNzBQR0ZXh0HgRfIVNCAgIfC2hkZAIBD2QWCAIBDw8WBB8JBQlMb2NhdGlvbjofC2hkZAIDDw8WBB8JBQ5BRkNIIE9SIDNSRCBGTB8LaGRkAgUPDxYEHwkFB09mZmljZTofC2hkZAIHDw8WCB8JBQYmbmJzcDsfFAUEdGV4dB8VAgIfC2hkZAICD2QWCAIBDw8WBB8JBQdEaWFsICM6HwtoZGQCAw8PFgQfCQUFMDcyMDAfC2hkZAIFDw8WBB8JBQtPZmZpY2UgRmF4Oh8LaGRkAgcPDxYIHwkFBiZuYnNwOx8UBQR0ZXh0HxUCAh8LaGRkAgMPZBYIAgEPDxYEHwkFBlBhZ2VyOh8LaGRkAgMPDxYEHwkFBDYyNzYfC2hkZAIFDw8WBB8JBQZFbWFpbDofC2hkZAIHDw8WCB8JBUE8YSAgaHJlZj0ibWFpbHRvOktLUkJFQ0VLQFVXSEVBTFRILk9SRyI+S0tSQkVDRUtAVVdIRUFMVEguT1JHPC9hPh8UBQR0ZXh0HxUCAh8LaGRkAgQPZBYIAgEPDxYEHwkFDFdoZXJlQWJvdXRzOh8LaGRkAgMPDxYEHwkFBiZuYnNwOx8LaGRkAgUPDxYEHwllHwtoZGQCBw8PFggfCQUGJm5ic3A7HxQFBHRleHQfFQICHwtoZGQCDw88KwAJAQAPFgQfBxYAHwgCA2QWBmYPZBYIAgEPDxYEHwkFBUNlbGw6HwtoZGQCAw8PFgQfCQUMOTE5MjAzODIwMDIyHwtoZGQCBQ8PFgQfCWUfC2hkZAIHDw8WCB8JBQYmbmJzcDsfFAUEdGV4dB8VAgIfC2hkZAIBD2QWCAIBDw8WBB8JBQVIb21lOh8LaGRkAgMPDxYEHwkFBiZuYnNwOx8LaGRkAgUPDxYEHwkFCTJuZCBIb21lOh8LaGRkAgcPDxYIHwkFBiZuYnNwOx8UBQR0ZXh0HxUCAh8LaGRkAgIPZBYIAgEPDxYEHwllHwtoZGQCAw8PFgQfCQUGJm5ic3A7HwtoZGQCBQ8PFgQfCWUfC2hkZAIHDw8WCB8JBQYmbmJzcDsfFAUEdGV4dB8VAgIfC2hkZAIRDw8WBh8JBR5WaWV3IEFkZGl0aW9uYWwgSW5mb3JtYXRpb24gPj4eD0NvbW1hbmRBcmd1bWVudAUNQWRpdGlvbmFsSW5mbx8LaGRkAhMPDxYWHihWaWV3U3RhdGVEaXNwbGF5Q2hhbmdlUGFnaW5nU3RhdHVzQnV0dG9uZx4XVmlld1N0YXRlUGFnaW5nVGVtcGxhdGVlHh9WaWV3U3RhdGVIaWRlQ2FsbEJhY2tOdW1iZXJUeXBlaB4Ub3ZlcnJpZGVwYWdpbmdzdGF0dXNoHhVWaWV3U3RhdGVEZWZhdWx0UGFnZXIFAyU0Mx4lVmlld1N0YXRlUGFnaW5nU3RhdGlzdGljc0xvY2F0aW9uRnJvbQspaldlYkRpcmVjdG9yeS5QYWdpbmdTdGF0aXN0aWNzTG9jYXRpb25Gcm9tLCBBcHBfQ29kZSwgVmVyc2lvbj0wLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPW51bGwAHgdwYWdlcmlkBQQ2Mjc2HwYFCiAgICAgNjI3NlgeGlZpZXdTdGF0ZVBhZ2luZ0NvdmVyYWdlVXJsMt0BAAEAAAD/////AQAAAAAAAAAMAgAAAD9BcHBfQ29kZSwgVmVyc2lvbj0wLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPW51bGwFAQAAAB5XZWJEaXJlY3RvcnkuUGFnaW5nQ292ZXJhZ2VVcmwFAAAAA3VybAxwYWdlTG9jYXRpb24JaXNQYWdlcklkC2lzUXVpY2tQYWdlC2hpZGVQYWdlcklkAQEAAAABAQECAAAABgMAAAAQVmlld1Byb2ZpbGUuYXNweAYEAAAAAAAAAAseHGFza2ZvcmNvbmZpcm1hdGlvbm9mb3BhZ2VyaWRoHhxWaWV3U3RhdGVJc0Fsd2F5c1BhZ2FibGVUeXBlaGQWGAIBDw8WAh8LaGRkAgMPDxYCHwtoZGQCBQ8PFgIfCQUGU3RhdHVzZGQCBw8PFgIeCEltYWdlVXJsBRl+L0ltYWdlcy9HcmVlbi1zdGF0dXMucG5nZGQCCQ8PFgYfFAUPTGFiZWxTbWFsbEdyZWVuHwkFCUF2YWlsYWJsZR8VAgJkZAIRDw8WAh8LZ2RkAhsPDxYEHxQFEVBhZ2VTdGF0dXNQYWdhYmxlHxUCAmQWAgIBDw8WAh8JBQhQQUdFQUJMRWRkAiEPZBYCAgMPD2QWAh4FdmFsdWVlZAIjD2QWCgIBD2QWAmYPZBYCAgMPD2QWAh4Hb25QYXN0ZQVlIHJldHVybiBmb3JtYXRQYXN0ZWREYXRhKCdjdGwwMF9Db250ZW50UGxhY2VIb2xkZXIxX0RwczFfVGV4dEJveENhbGxCYWNrTnVtYmVyJywnIC0uKCkvIyowMTIzNDU2Nzg5JylkAgUPDxYCHwkFKUVudGVyIFRleHQgTWVzc2FnZSBBbG9uZyB3aXRoIFNlbmRlciBOYW1lZGQCCQ8QDxYGHg1EYXRhVGV4dEZpZWxkBQR0ZXh0Hg5EYXRhVmFsdWVGaWVsZAUEdGV4dB4LXyFEYXRhQm91bmRnFgIeCG9uQ2hhbmdlBY4BO3JldHVybiBzZXRUZXh0Qm94VmFsdWVGcm9tRHJvcERvd25FbGVtZW50KCdjdGwwMF9Db250ZW50UGxhY2VIb2xkZXIxX0RwczFfRERMUHJlZGVmaW5lZE1lc3NhZ2VzJywnY3RsMDBfQ29udGVudFBsYWNlSG9sZGVyMV9EcHMxX1R4dE1lc3NhZ2UnKRAVLCNTZWxlY3Qgb25lIG9mIHByZWRlZmluZWQgbWVzc2FnZShzKQ5OSUNVIFN0YXQgSGVscBciOTExIiBFbWVyZ2VuY3kgaW4gUEFDVRtQQUNVIGZ1bGwsIHNpZ24gb3V0cyBuZWVkZWQZU2lnbiBvdXQgbmVlZGVkIGluIHNsb3QgIyZBbmVzdCBwYXBlcndvcmsgbm90IGNvbXBsZXRlIGluIHNsb3QgIxtObyBpbnBhdGllbnQgYmVkcyBhdmFpbGFibGUeT3JkZXJzIG5lZWRlZCBmb3IgcHQgaW4gc2xvdCAjPU1lZC9TdXJnIHJlc3RyYWludCBhcHBsaWVkLCBwbGVhc2Ugc2lnbiBvcmRlciB3aXRoaW4gMTIgaG91cnMdQ2FsbCBSUGggZm9yIEQvQyBtZWQgcmV2aWV3ICMZQ2FsbCBSUGggZm9yIEQvQyBwbGFuIGF0IBhDYWxsIENNIGZvciBEL0MgcGxhbiBhdCAdU2lnbmF0dXJlIG5lZWRlZCB0byBEL0Mgcm9vbSMgRG9jdW1lbnRhdGlvbiBub3QgY29tcGxldGUgcm9vbSMaQ2FsbCBSUGggZm9yIG1lZCBvcmRlciBhdCAKT04gRUNNTyBpbghPRkYgRUNNTxhQaGFybWFjeSBDYXJ0cyBhcmUgcmVhZHksQWRtaXQgdG8gT0JTIHN0YXR1cyBvcmRlciBuZWVkZWQgZm9yIHB0IF9fX18qQWRtaXQgdG8gSVAgc3RhdHVzIG9yZGVyIG5lZWRlZCByb29tIyBfX19fJE9CUyBwdCBfX19fIHcvYiBhdCAyM2hyIG1hcmsgYXQgX19fXyNPQlMgcHQgX19fXyAgb3ZlciAyM2hyIG1hcmsgYXQgX19fX1NQYXRpZW50IF9fX18gaW4gUEFDVSBhdCBfX19fIHdpdGggZXBpZHVyYWwsIHRleHQgcGFnZSBiZWVwZXIgODY4MSB3aXRoIGJlZCBhc3NpZy4uLk1QYXRpZW50IF9fX18gaW4gUEFDVSBhdCBfX19fIGF3YWtlLCB0ZXh0IHBhZ2UgYmVlcGVyIDg2ODEgd2l0aCBiZWQgYXNzaWdubWVudFNQYXRpZW50IF9fX18gaW4gUEFDVSBhdCBfX19fIGludHViYXRlZCwgdGV4dCBwYWdlIGJlZXBlciA4NjgxIHdpdGggYmVkIGFzc2lnbm1lbi4uLlNQYXRpZW50IF9fX18gaW4gUEFDVSBhdCBfX19fIG5lZWRzIG5lcnZlIGJsb2NrIGluIFBBQ1UsIHRleHQgcGFnZSBiZWVwZXIgODY4MSB3aS4uLlNQYXRpZW50IF9fX18gaW4gUEFDVSBhdCBfX19fIGdvaW5nIE9QU0MvRkRTLCB0ZXh0IHBhZ2UgYmVlcGVyIDg2ODEgd2l0aCBiZWQgYXNzaS4uLi5QbGVhc2UgY29tZSB0byB0aGUgT3V0cGF0aWVudC1MYWIuICBUaGFuayB5b3UuOlBsZWFzZSBjYWxsIDMtNTAzOCByZWdhcmRpbmcgYSBzaWNrIGNhbGwgLSBTdGFmZmluZyBPZmZpY2UnUGxlYXNlIHJlcG9ydCB0byBSYWRpb2xvZ3kuICBUaGFuayB5b3UuOFBsZWFzZSBjYWxsIF9fX18gcmVnYXJkaW5nIHlvdXIgSGVhbHRoIExpbmsgaXNzdWUuIF9fX18uGlRoZSBwcm9jZWR1cmUgaGFzIHN0YXJ0ZWQuHkVsIHByb2NlZGltaWVudG8gaGEgY29tZW56YWRvLilUaGUgcHJvY2VkdXJlIGlzIGdvaW5nIHdlbGwgYXQgdGhpcyB0aW1lLihFbCBwcm9jZWRpbWllbnRvIHZhIGJpZW4gZW4gZXN0byBtb21lbnRvLVBsZWFzZSByZXR1cm4gdG8gdGhlIDNyZCBmbG9vciBudXJzZXMgc3RhdGlvbj1Qb3IgRmF2b3IsIHJlZ3Jlc2UgYSBsYSBlc3RhY2lvbiBkZSBlbmZlcm1lcmFzIGVuIGVsIDNlciBwaXNvTUVETyBJbml0aWFsIGludGVyLXByb2Zlc3Npb25hbCBjYXJlIGNvbmZlcmVuY2Ugc2NoZWR1bGVkIGZvcl9fX19hdF9fX19pbl9fX18uJ0VETyBEYWlseSBSb3VuZHMgc3RhcnRpbmcgYXRfX19fb25fX19fLjJFRE8gY2FyZSBjb25mZXJlbmNlIHNjaGVkdWxlZCBmb3JfX19fYXRfX19faW5fX19fLjBQbGVhc2UgcmV0dXJuIHRvIFBlZGlhdHJpYyBTZWRhdGlvbiBvbiAxc3QgZmxvb3IhV2FsayBJbiBmb3IgX19fX19fX19fLiBOb24gdXJnZW50JFBsZWFzZSBSZXR1cm4gVG8gT3V0UGF0aWVudCBTdXJnZXJ5ICIgUGxlYXNlIFJldHVybiB0byAxc3QgRGF5IFN1cmdlcnkgFSwjU2VsZWN0IG9uZSBvZiBwcmVkZWZpbmVkIG1lc3NhZ2UocykOTklDVSBTdGF0IEhlbHAXIjkxMSIgRW1lcmdlbmN5IGluIFBBQ1UbUEFDVSBmdWxsLCBzaWduIG91dHMgbmVlZGVkGVNpZ24gb3V0IG5lZWRlZCBpbiBzbG90ICMmQW5lc3QgcGFwZXJ3b3JrIG5vdCBjb21wbGV0ZSBpbiBzbG90ICMbTm8gaW5wYXRpZW50IGJlZHMgYXZhaWxhYmxlHk9yZGVycyBuZWVkZWQgZm9yIHB0IGluIHNsb3QgIz1NZWQvU3VyZyByZXN0cmFpbnQgYXBwbGllZCwgcGxlYXNlIHNpZ24gb3JkZXIgd2l0aGluIDEyIGhvdXJzHUNhbGwgUlBoIGZvciBEL0MgbWVkIHJldmlldyAjGUNhbGwgUlBoIGZvciBEL0MgcGxhbiBhdCAYQ2FsbCBDTSBmb3IgRC9DIHBsYW4gYXQgHVNpZ25hdHVyZSBuZWVkZWQgdG8gRC9DIHJvb20jIERvY3VtZW50YXRpb24gbm90IGNvbXBsZXRlIHJvb20jGkNhbGwgUlBoIGZvciBtZWQgb3JkZXIgYXQgCk9OIEVDTU8gaW4IT0ZGIEVDTU8YUGhhcm1hY3kgQ2FydHMgYXJlIHJlYWR5LEFkbWl0IHRvIE9CUyBzdGF0dXMgb3JkZXIgbmVlZGVkIGZvciBwdCBfX19fKkFkbWl0IHRvIElQIHN0YXR1cyBvcmRlciBuZWVkZWQgcm9vbSMgX19fXyRPQlMgcHQgX19fXyB3L2IgYXQgMjNociBtYXJrIGF0IF9fX18jT0JTIHB0IF9fX18gIG92ZXIgMjNociBtYXJrIGF0IF9fX19VUGF0aWVudCBfX19fIGluIFBBQ1UgYXQgX19fXyB3aXRoIGVwaWR1cmFsLCB0ZXh0IHBhZ2UgYmVlcGVyIDg2ODEgd2l0aCBiZWQgYXNzaWdubWVudE1QYXRpZW50IF9fX18gaW4gUEFDVSBhdCBfX19fIGF3YWtlLCB0ZXh0IHBhZ2UgYmVlcGVyIDg2ODEgd2l0aCBiZWQgYXNzaWdubWVudFFQYXRpZW50IF9fX18gaW4gUEFDVSBhdCBfX19fIGludHViYXRlZCwgdGV4dCBwYWdlIGJlZXBlciA4NjgxIHdpdGggYmVkIGFzc2lnbm1lbnRhUGF0aWVudCBfX19fIGluIFBBQ1UgYXQgX19fXyBuZWVkcyBuZXJ2ZSBibG9jayBpbiBQQUNVLCB0ZXh0IHBhZ2UgYmVlcGVyIDg2ODEgd2l0aCBiZWQgYXNzaWdubWVudFZQYXRpZW50IF9fX18gaW4gUEFDVSBhdCBfX19fIGdvaW5nIE9QU0MvRkRTLCB0ZXh0IHBhZ2UgYmVlcGVyIDg2ODEgd2l0aCBiZWQgYXNzaWdubWVudC5QbGVhc2UgY29tZSB0byB0aGUgT3V0cGF0aWVudC1MYWIuICBUaGFuayB5b3UuOlBsZWFzZSBjYWxsIDMtNTAzOCByZWdhcmRpbmcgYSBzaWNrIGNhbGwgLSBTdGFmZmluZyBPZmZpY2UnUGxlYXNlIHJlcG9ydCB0byBSYWRpb2xvZ3kuICBUaGFuayB5b3UuOFBsZWFzZSBjYWxsIF9fX18gcmVnYXJkaW5nIHlvdXIgSGVhbHRoIExpbmsgaXNzdWUuIF9fX18uGlRoZSBwcm9jZWR1cmUgaGFzIHN0YXJ0ZWQuHkVsIHByb2NlZGltaWVudG8gaGEgY29tZW56YWRvLilUaGUgcHJvY2VkdXJlIGlzIGdvaW5nIHdlbGwgYXQgdGhpcyB0aW1lLihFbCBwcm9jZWRpbWllbnRvIHZhIGJpZW4gZW4gZXN0byBtb21lbnRvLVBsZWFzZSByZXR1cm4gdG8gdGhlIDNyZCBmbG9vciBudXJzZXMgc3RhdGlvbj1Qb3IgRmF2b3IsIHJlZ3Jlc2UgYSBsYSBlc3RhY2lvbiBkZSBlbmZlcm1lcmFzIGVuIGVsIDNlciBwaXNvTUVETyBJbml0aWFsIGludGVyLXByb2Zlc3Npb25hbCBjYXJlIGNvbmZlcmVuY2Ugc2NoZWR1bGVkIGZvcl9fX19hdF9fX19pbl9fX18uJ0VETyBEYWlseSBSb3VuZHMgc3RhcnRpbmcgYXRfX19fb25fX19fLjJFRE8gY2FyZSBjb25mZXJlbmNlIHNjaGVkdWxlZCBmb3JfX19fYXRfX19faW5fX19fLjBQbGVhc2UgcmV0dXJuIHRvIFBlZGlhdHJpYyBTZWRhdGlvbiBvbiAxc3QgZmxvb3IhV2FsayBJbiBmb3IgX19fX19fX19fLiBOb24gdXJnZW50JFBsZWFzZSBSZXR1cm4gVG8gT3V0UGF0aWVudCBTdXJnZXJ5ICIgUGxlYXNlIFJldHVybiB0byAxc3QgRGF5IFN1cmdlcnkgFCsDLGdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZGQCCw9kFgICAQ8PFggeCU1heExlbmd0aAJ4HgVXaWR0aBsAAAAAAOB1QAEAAAAeBkhlaWdodBsAAAAAAABUQAEAAAAfFQKAAxYEHgdvbmZvY3VzBVxudW1iZXJvZmNoYXJhY3RlcnMoJ2N0bDAwX0NvbnRlbnRQbGFjZUhvbGRlcjFfRHBzMV9UeHRNZXNzYWdlJywxMjAsJ2RpdmNoYXJhY3RlcnNyZW1haW5pbmcnKR4Hb25rZXl1cAVdbnVtYmVyb2ZjaGFyYWN0ZXJzKCdjdGwwMF9Db250ZW50UGxhY2VIb2xkZXIxX0RwczFfVHh0TWVzc2FnZScsMTIwLCdkaXZjaGFyYWN0ZXJzcmVtYWluaW5nJyk7ZAIND2QWBAIBD2QWAgIBDw9kFgIfCgViIHJldHVybiBzaG93YWxlcnRtZXNzYWdlKCdjdGwwMF9Db250ZW50UGxhY2VIb2xkZXIxX0RwczFfVHh0TWVzc2FnZScsJ1BsZWFzZSwgZW50ZXIgdGhlIG1lc3NhZ2UhJylkAgMPFgIfC2gWAgIBDw9kFgIfCgXrAXJldHVybiBzY2hlZHVsZXJlZ3VsYXJwYWdlKCdTY2hlZHVsZVBhZ2UuYXNweCcsbnVsbCwnY3RsMDBfQ29udGVudFBsYWNlSG9sZGVyMV9EcHMxX1R4dE1lc3NhZ2UnLCdjdGwwMF9Db250ZW50UGxhY2VIb2xkZXIxX0RwczFfVGV4dEJveENhbGxCYWNrTnVtYmVyJywnNjI3NlgnLCc2Mjc2JywnbnVsbCcsJ2N0bDAwX0NvbnRlbnRQbGFjZUhvbGRlcjFfRHBzMV9ERExQcmVkZWZpbmVkTWVzc2FnZXMnLCdUcnVlJylkAiUPZBYEAgkPD2QWAh8jBWkgcmV0dXJuIGZvcm1hdFBhc3RlZERhdGEoJ2N0bDAwX0NvbnRlbnRQbGFjZUhvbGRlcjFfRHBzMV9UeHRNZXNzYWdlTGlzdFBhZ2VOdW1lcmljJywnIC0uKCkvIyowMTIzNDU2Nzg5JylkAg8PFgIfC2hkAicPZBYGAgcPD2QWAh8jBXAgcmV0dXJuIGZvcm1hdFBhc3RlZERhdGEoJ2N0bDAwX0NvbnRlbnRQbGFjZUhvbGRlcjFfRHBzMV9UeHRNZXNzYWdlRm9ybWF0dGVkUGFnaW5nTnVtZXJpYycsJyAtLigpLyMqMDEyMzQ1Njc4OScpZAIJD2QWAgIBD2QWAmYPZBYCAgEPPCsAEQEBEBYAFgAWAGQCDQ8WAh8LaGQCKQ9kFgJmD2QWAgIBD2QWAgIDDxBkZBYBZmQCFQ88KwAJAQAPFgIfC2hkZAIXDzwrAAkAZAIZDzwrAAkAZAIbDw8WAh8JBQdBbGlhc2VzZGQCHQ88KwARAQEQFgAWABYAZAIfDw8WAh8LaGQWBAIDDw8WAh8LZ2RkAicPFgIfC2hkAiEPPCsACQEADxYCHwtoZGQCIw9kFgICAQ8PFgIfC2hkZAInDw8WBB8JBRtEaXNwbGF5IEFkZGl0aW9uYWwgQ29udGFjdHMfC2hkZAIpDzwrABECAA8WAh8LaGQBEBYAFgAWAGQCKw9kFgJmDzwrAAkAZBgFBTJjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJERwczEkRlBUMSRHVkZvcm1hdFBhZ2luZw9nZAUmY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRHVkR1cGxpY2F0ZXMPZ2QFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYCBQ5jdGwwMCRMb2dJbWFnZQUMY3RsMDAkSUJIZWxwBS9jdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJEdyaWRWaWV3RnJxQWxsRW50cmllcw9nZAUiY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRHVlBob25lcw9nZH2pTKRAB9ooqxCj0RPMzQ7addo5LFe73XaNkzWf3X0P" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebDirectory/WebResource.axd?d=ARdKJ70CIyv7ulkSilfvrWvrTqCAECSnEUvkSZFPwAEWknmE7s1cU1uPgAQtLyVXlmj8Ne1liS4UaHwXBBO2sl3pxRDuoT2DdseT7bQ83EQ1&amp;t=635868725257726765" type="text/javascript"></script>
+
+
+<script src="JS/Common.js" type="text/javascript"></script>
+<script src="JS/wz_tooltip.js" type="text/javascript"></script>
+<script src="/WebDirectory/WebResource.axd?d=kVLIl_bbHCEYckjNznRbXw-yvDjSDm3IGIBYma9DpNDdK1Mbrwc5pX_-8DlJXICQ4PL4Yq5AxwgJIhrybh2-eRIgeCIMl94kV0T2iYInaQ41&amp;t=635868725257726765" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function numberofcharacters(elementid, maxnumberofcharacters,displaydiv){ var element = document.getElementById(elementid); var placeholder = document.getElementById(displaydiv); var remainingnumberofcharacters; var textlength; if (element != null) { textlength = element.value.length; remainingnumberofcharacters = maxnumberofcharacters - textlength; if (remainingnumberofcharacters <= 0)  { element.value = element.value.substring(0, maxnumberofcharacters); remainingnumberofcharacters = 0; } } if (placeholder != null) { placeholder.innerHTML = remainingnumberofcharacters + ' characters remaining'; }}//]]>
+</script>
+<script language='javascript'>// created: 2005-08-30
+// updated: 2005-08-31
+// mredkj.com
+function extractNumber(obj, decimalPlaces, allowNegative)
+{
+	var temp = obj.value;
+	
+	// avoid changing things if already formatted correctly
+	var reg0Str = '[0-9]*';
+	if (decimalPlaces > 0) {
+       reg0Str += '\.?[0-9]{0,' + decimalPlaces + '}';
+   } else if (decimalPlaces < 0) {
+       reg0Str += '\.?[0-9]*';
+   }
+	reg0Str = allowNegative ? '^-?' + reg0Str : '^' + reg0Str;
+	reg0Str = reg0Str + '$';
+	var reg0 = new RegExp(reg0Str);
+	if (reg0.test(temp)) return true;
+
+	// first replace all non numbers
+	var reg1Str = '[^0-9' + (decimalPlaces != 0 ? '.' : '') + (allowNegative ? '-' : '') + ']';
+	var reg1 = new RegExp(reg1Str, 'g');
+	temp = temp.replace(reg1, '');
+
+	if (allowNegative) {
+		// replace extra negative
+		var hasNegative = temp.length > 0 && temp.charAt(0) == '-';
+		var reg2 = /-/g;
+		temp = temp.replace(reg2, '');
+		if (hasNegative) temp = '-' + temp;
+	}
+	
+	if (decimalPlaces != 0) {
+		var reg3 = /\./g;
+       var reg3Array = reg3.exec(temp);
+       if (reg3Array != null) {
+		    // keep only first occurrence of . 
+   	    //  and the number of places specified by decimalPlaces or the entire string if decimalPlaces < 0
+	        var reg3Right = temp.substring(reg3Array.index + reg3Array[0].length);
+	        reg3Right = reg3Right.replace(reg3, '');
+	        reg3Right = decimalPlaces > 0 ? reg3Right.substring(0, decimalPlaces) : reg3Right;
+	        temp = temp.substring(0,reg3Array.index) + '.' + reg3Right;
+       }
+   }
+	
+	obj.value = temp;
+}
+function blockNonNumbers(obj, e, allowDecimal, allowNegative)
+{
+	var key;
+	var isCtrl = false;
+	var keychar;
+	var reg;
+	
+	if(window.event) {
+		key = e.keyCode;
+		isCtrl = window.event.ctrlKey
+	}
+	else if(e.which) {
+		key = e.which;
+		isCtrl = e.ctrlKey;
+	}
+	
+	if (isNaN(key)) return true;
+	
+	keychar = String.fromCharCode(key);
+		
+	// check for backspace or delete, or if Ctrl was pressed
+	if (key == 8 || isCtrl)
+	{
+		return true;
+	}
+	reg = /\d/;
+	reg = /^[0-9\s-*#()]$/;
+	var isFirstN = allowNegative ? keychar == '-' && obj.value.indexOf('-') == -1 : false;
+	var isFirstD = allowDecimal ? keychar == '.' && obj.value.indexOf('.') == -1 : false;
+	
+	return isFirstN || isFirstD || reg.test(keychar);
+}</script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="2CBE7B8A" />
+	<input type="hidden" name="__SCROLLPOSITIONX" id="__SCROLLPOSITIONX" value="0" />
+	<input type="hidden" name="__SCROLLPOSITIONY" id="__SCROLLPOSITIONY" value="0" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWMgK6jp6GDAK8qMLVAwLtr6S1CQK01sq3CwLGmu/lDwLW/+zjDAK0ldroAQLBx9j9AgKf8YjsDAKW3Yn9DwLB+oKKAgLKvtCsCAKr2tvtDwKvnOuJDQKO0vugBgLCnN7UCQLrlvZEAt64rqsBAteBq68EAtfq5LkJApbVio0IAsrf4esLAr7+5LAKApantfAHAsDx/YUDAv6+rbkCAojk6+0CAoeo/IEFAqXUpLcLApSdmIMHArrrh68LAvfT2JUKArec1qcEAoua88gDAt7Qh8UCAo+ksZEJAtzQq8wNAtjw498HAsmV+KoOAqzKspwGAqCh7IwFAsWBm9YNAt693tABAuqBqJQLApaT5vYJAoWn/KMPAtaojdEMAr2EuYICAvWO44MKAvOXudYDDKcu7x7ayNjrFotJ3HfBpw5tgktpVGOIbm3oQdYDaEM=" />
+</div>
+	
+	<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+	<td style="width:100%">
+		 <!---HEADER ---> 
+		 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="text">
+			  <tr>
+				 <td>
+					<table width="100%">
+						<tr>
+							<td width="25%">
+								<input type="image" name="ctl00$LogImage" id="ctl00_LogImage" src="Images/UWHCLogo.jpg?dummy_parameter=20160217182822" style="border-width:0px;" />
+							</td>
+							<td width="25%">
+								<table id="ctl00_MPTM1_DLMessages" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;">
+	<tr>
+		<td align="left" valign="top">
+		<span id="ctl00_MPTM1_DLMessages_ctl00_LabelMessage" class="TopMessagesCss"></span>
+	</td>
+	</tr><tr>
+		<td align="left" valign="top">
+		<span id="ctl00_MPTM1_DLMessages_ctl01_LabelMessage" class="TopMessagesCss"></span>
+	</td>
+	</tr><tr>
+		<td align="left" valign="top">
+		<span id="ctl00_MPTM1_DLMessages_ctl02_LabelMessage" class="TopMessagesCss"></span>
+	</td>
+	</tr>
+</table>
+							</td>
+							<td width="50%" align="center" valign="middle">
+									
+							</td>
+						</tr>
+						<tr>
+							<td width="25%">
+								&nbsp;</td>
+							<td width="25%">
+								&nbsp;</td>
+							<td width="50%" align="center" valign="middle">
+								&nbsp;</td>
+						</tr>
+					</table>
+				 </td>
+			  </tr>
+		 </table>
+		 <!---END HEADER --->    
+	</td>
+  </tr>
+
+   <tr>
+		<td align="right">
+			
+		</td>   
+   </tr>
+  
+    <tr id="ctl00_bannertr">
+	<td colspan="2">
+		    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+				<td  align="left"  colspan="1" style="height: 24px">
+					&nbsp;</td>
+					
+					<td align="right" colspan="1">
+                        
+                        
+                    </td>	
+					
+				<td align="right" colspan="1">
+					&nbsp;</td>
+			</tr>
+			<tr class="Banner" style="height: 32px">
+				<td  align="left"  colspan="1" style="height: 24px">
+					<span id="ctl00_LblDescription" class="LabelBigWhite" style="font-weight:normal;font-style:normal;">View Profile</span>
+					</td>
+					
+					<td align="right" colspan="1">
+					<span id="ctl00_LblTime" class="Clock" style="display:inline-block;width:100%;"></span>
+				</td>	
+					
+				<td align="right" colspan="1">
+					<input type="image" name="ctl00$IBHelp" id="ctl00_IBHelp" title="Show help" src="Images/Help.png" onclick="return openhelpwindow(&#39;Help/webxchange.htm&#39;,&#39;&#39;);" style="border-width:0px;" />
+				</td>
+			</tr>
+		    </table>
+	    </td>
+</tr>
+
+  
+    <tr>
+    <td colspan="2">
+	    
+    </td>
+    </tr>
+  
+    <tr>
+	<td style="height:1"></td>
+    </tr>
+    <tr>
+    <td align="left" valign="top" class="NavigationLinks">
+		    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+		    <!-- Navigation Menu start-->
+		    <tr>
+			    <td colspan="2">
+				    <a href="#ctl00_MenuNavigation_SkipLink"><img alt="Skip Navigation Links" src="/WebDirectory/WebResource.axd?d=ALNGMcyNT-HLQz0z0fRLlNw_jZDYnQ9CFK8jV4YR09J4vjlDs6PuR9ko2FxYX-6C-3oPkoYiU-OnazfaJpLqSpoym1T7odx6KjWMKtSStJ81&amp;t=635868725257726765" width="0" height="0" style="border-width:0px;" /></a><table id="ctl00_MenuNavigation" class="NavigationLinks ctl00_MenuNavigation_2" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(this)" id="ctl00_MenuNavigationn0"><table class="menu ctl00_MenuNavigation_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+			<tr>
+				<td style="white-space:nowrap;"><a class="ctl00_MenuNavigation_1 menu ctl00_MenuNavigation_6" href="#" style="border-style:none;font-size:1em;cursor:text;">Profile</a></td><td style="width:0;"><img src="/WebDirectory/WebResource.axd?d=JcJVALmqNLP-rMPYh3vRzxpaScEhEb33WaDYeTS8_umIO1qEC7Dh3MvT3qPXoDEcn6ipgmqw7X5SJkcEKd1I0_90KIgFA-AleMKZnXlQPtg1&amp;t=635868725257726765" alt="Expand Profile" style="border-style:none;vertical-align:middle;" /></td>
+			</tr>
+		</table></td><td><img src="Images/Separator.gif" alt="" /></td><td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(this)" id="ctl00_MenuNavigationn1"><table class="menu ctl00_MenuNavigation_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+			<tr>
+				<td style="white-space:nowrap;"><a class="ctl00_MenuNavigation_1 menu ctl00_MenuNavigation_6" href="Default.aspx" style="border-style:none;font-size:1em;">Home</a></td>
+			</tr>
+		</table></td>
+	</tr>
+</table><div id="ctl00_MenuNavigationn0Items" class="ctl00_MenuNavigation_0 submenu ctl00_MenuNavigation_5">
+	<table border="0" cellpadding="0" cellspacing="0">
+		<tr style="height:1px;">
+			<td></td>
+		</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(this)" id="ctl00_MenuNavigationn2">
+			<td><table class="NavigationLinks ctl00_MenuNavigation_4" cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td style="white-space:nowrap;width:100%;"><a class="ctl00_MenuNavigation_1 NavigationLinks ctl00_MenuNavigation_3" href="ConfirmPagerId.aspx?ProfileId=6276X&amp;a=c" style="border-style:none;font-size:1em;">Change&nbsp;Paging&nbsp;Status</a></td>
+				</tr>
+			</table></td>
+		</tr><tr style="height:1px;">
+			<td></td>
+		</tr><tr style="height:1px;">
+			<td></td>
+		</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(this)" id="ctl00_MenuNavigationn3">
+			<td><table class="NavigationLinks ctl00_MenuNavigation_4" cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td style="white-space:nowrap;width:100%;"><a class="ctl00_MenuNavigation_1 NavigationLinks ctl00_MenuNavigation_3" href="ConfirmPagerId.aspx?ProfileId=6276X&amp;a=e" style="border-style:none;font-size:1em;">Exception&nbsp;Schedule</a></td>
+				</tr>
+			</table></td>
+		</tr><tr style="height:1px;">
+			<td></td>
+		</tr>
+	</table><div class="NavigationLinks ctl00_MenuNavigation_4 ctl00_MenuNavigation_0" id="ctl00_MenuNavigationn0ItemsUp" onmouseover="PopOut_Up(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+		<img src="/WebDirectory/WebResource.axd?d=r9LQtjlxk_i7PEzmQ-IjBcncTvcFnPb75oC-IMcZGaUPMpprE-Yf_X8Jg9hXMcVomrlMN9-0HtlgA7uCoKL6HiW9fsgefOqt9DfZh69m0hQ1&amp;t=635868725257726765" alt="Scroll up" />
+	</div><div class="NavigationLinks ctl00_MenuNavigation_4 ctl00_MenuNavigation_0" id="ctl00_MenuNavigationn0ItemsDn" onmouseover="PopOut_Down(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+		<img src="/WebDirectory/WebResource.axd?d=51HqFfFicMbCvO3SehwZG0U-2808iE9IMnEDl3PSE5okcUe7h6V4t2pfFGsb85Cz5VCi4X3MYWq4MrlRbw0w0esZTgwzv1Fbpz39gJ68W4Y1&amp;t=635868725257726765" alt="Scroll down" />
+	</div>
+</div><a id="ctl00_MenuNavigation_SkipLink"></a>
+			    </td>
+		    </tr>
+			    <!-- Navigation Menu end-->
+			 
+		    <tr>
+			    <td colspan="2" valign="top" class="NavigationLinks" style="height: 5">
+									 
+				    
+			    </td>
+		    </tr>
+		    </table>
+    </td>
+    </tr>
+						 
+  <tr>
+	<td><div>
+		
+		 
+         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="profile_box">
+            <tr>
+              <td colspan="2" align="left" valign="top">
+                  <table border="0" style="width:100%">
+						
+						<!-- Image and name-->
+						<tr>
+						  <td style="height:40" colspan="2" align="left" valign="middle" class="profile_text">
+							  <div id="ctl00_ContentPlaceHolder1_PanelNameAndPhoto" OnMouseOver="Tip(&#39;Black&#39;, DELAY,100)" onmouseout="UnTip()" style="width:100%;">
+	
+									
+									&nbsp;
+								   <font size= +1 color=#000000>&diams;</font>
+								   &nbsp;
+									<span class="subheadline"><span id="ctl00_ContentPlaceHolder1_lblName">LAUFF, KATHRYN</span>
+									</span>
+								   &nbsp;
+								   
+								  
+</div>
+						  </td>
+						</tr>
+						<!-- end of Image and name-->
+						
+						<!--<tr>
+							<td align="left" valign="middle" colspan="2" >
+								<span id="ctl00_ContentPlaceHolder1_LblPhotoLocation" class="LabelXSmallGrey">Photo location:</span>
+							</td>
+						</tr>-->
+						
+						<!-- Telephony call demo-->
+						
+						<!-- End of Telephony call demo-->
+						
+						<!--sup file-->
+						
+						<!--End of sup file-->
+						
+						<!--Physician preference link-->
+						
+						<!--End of physician preference link-->
+						
+						<!--partners pager-->
+						
+						<!--End of partners file-->
+						
+						<!--Phones-->
+						
+						<!--End of Phones-->
+						
+						<!-- list view Profile data-->
+						<tr>
+							<td align="center" valign="middle" colspan="2" style="width:100%">
+								<table id="ctl00_ContentPlaceHolder1_DlListProfileData" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
+	<tr>
+		<td class="profile_text">
+									  	
+										
+										
+										
+										
+										
+												
+									<table border="0" style="width:100%;">
+			<tr>
+				<td align="left" style="width:48%;"><span class="LabelXSmallGrey" style="font-weight:bold;">Department:&nbsp;</span><span class="text">OR-AFCH OPERATING ROOMS</span></td><td align="left" style="width:48%;"><span class="LabelXSmallGrey" style="font-weight:bold;">Dept Fax:&nbsp;</span><span class="text">&nbsp;</span></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td class="profile_text">
+									  	
+										
+										
+										
+										
+										
+												
+									<table border="0" style="width:100%;">
+			<tr>
+				<td align="left" style="width:48%;"><span class="LabelXSmallGrey" style="font-weight:bold;">Location:&nbsp;</span><span class="text">AFCH OR 3RD FL</span></td><td align="left" style="width:48%;"><span class="LabelXSmallGrey" style="font-weight:bold;">Office:&nbsp;</span><span class="text">&nbsp;</span></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td class="profile_text">
+									  	
+										
+										
+										
+										
+										
+												
+									<table border="0" style="width:100%;">
+			<tr>
+				<td align="left" style="width:48%;"><span class="LabelXSmallGrey" style="font-weight:bold;">Dial #:&nbsp;</span><span class="text">07200</span></td><td align="left" style="width:48%;"><span class="LabelXSmallGrey" style="font-weight:bold;">Office Fax:&nbsp;</span><span class="text">&nbsp;</span></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td class="profile_text">
+									  	
+										
+										
+										
+										
+										
+												
+									<table border="0" style="width:100%;">
+			<tr>
+				<td align="left" style="width:48%;"><span class="LabelXSmallGrey" style="font-weight:bold;">Pager:&nbsp;</span><span class="text">6276</span></td><td align="left" style="width:48%;"><span class="LabelXSmallGrey" style="font-weight:bold;">Email:&nbsp;</span><span class="Email"><a  href="mailto:KKRBECEK@UWHEALTH.ORG">KKRBECEK@UWHEALTH.ORG</a></span></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td class="profile_text">
+									  	
+										
+										
+										
+										
+										
+												
+									<table border="0" style="width:100%;">
+			<tr>
+				<td align="left" colspan="2"><span class="LabelXSmallGrey" style="font-weight:bold;">WhereAbouts:&nbsp;</span><span class="text">&nbsp;</span></td>
+			</tr>
+		</table></td>
+	</tr>
+</table>
+							</td>
+						</tr>
+						<!-- end of list view Profile data-->
+					  
+					   <!-- list view additional-->
+						<tr>
+							<td align="center" valign="middle" colspan="2" style="width:100%">
+								
+							</td>
+						</tr>
+						<!-- end of list view additional-->
+							
+						<tr> 
+						  <td align="center" valign="middle" colspan="2">
+								
+						  </td>
+						</tr>
+						
+						<!-- Paging part-->
+						<tr>
+						<td colspan="2">
+						 <table width="100%" border="0" cellpadding="0" cellspacing="0" >
+						  <tr>
+							 <td align="center" valign="middle" class="alert_boxes" style="width: 100%">
+								 
+
+<div style="text-align: center">
+	<table style="width: 100%" border="0" align="center">
+	
+	   <tr>
+			<td nowrap="nowrap" align="left">
+				
+			</td>
+			<td align="left" style="width: 92%">
+			   
+			</td>
+		</tr>
+		<tr>
+			<td  style="height: 20px;" align="right">
+				
+				<img id="ctl00_ContentPlaceHolder1_Dps1_imgStatusColor" src="Images/Green-status.png" align="absmiddle" style="border-width:0px;" />
+			</td>
+			<td align="left" style="height: 20px">
+			   <span id="ctl00_ContentPlaceHolder1_Dps1_LblPagingStatus" class="LabelSmallGreen">Available</span>
+			</td>
+		</tr>
+		<tr>
+			<td align="left">
+				
+			</td>
+			<td align="left">
+			   
+				
+			</td>
+		</tr>
+		<tr>
+			<td align="left" colspan="2" style="text-align: right">
+				<img id="ctl00_ContentPlaceHolder1_Dps1_Img2WayMessaging" title="Two-way messaging device" src="Images/Two-Way-Messages-Icon.png" alt="Two-Way Messaging" align="absmiddle" style="border-width:0px;" /><br />
+			</td>
+		</tr>
+		
+		
+		
+		<tr id="ctl00_ContentPlaceHolder1_Dps1_tr_changestatus">
+	<td colspan="2" align="left">
+				
+				<a id="ctl00_ContentPlaceHolder1_Dps1_ButtonChangeStatus" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$Dps1$ButtonChangeStatus&#39;,&#39;&#39;)" style="font-family:Tahoma;font-size:10pt;font-style:italic;text-decoration:none;"><img src="Images/next.png" style="vertical-align: middle; border-style: none" alt=' ' /> Change Paging Status</a>
+			</td>
+</tr>
+
+		
+		<tr>
+			<td>
+			</td>
+			<td align="left">
+				
+				
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2">
+				<div id="ctl00_ContentPlaceHolder1_Dps1_PanelIsPagable" class="PageStatusPagable" style="width:100%;">
+	
+					 <table style="width: 100%" border="0">
+						 <tr>
+							 <td align="center">
+								 <span id="ctl00_ContentPlaceHolder1_Dps1_LblIsPageAble" class="links">PAGEABLE</span>
+							 </td>
+						 </tr>
+					 </table>
+				 
+</div>
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2" align="center">
+				
+			</td>
+		</tr>
+	</table>
+	
+	<table style="width: 100%" align="center" border="0">
+				
+				<tr>
+				<td  colspan="2">
+					
+				</td>
+				</tr>
+				
+				 <tr>
+				 <td colspan="2" valign="top">
+					<div id="ctl00_ContentPlaceHolder1_Dps1_PanelSendPage" style="width:100%;">
+	
+						<div style="text-align: left">
+							<table style="width: 100%" border="0" cellpadding="0" cellspacing="0">
+							
+								<!--callback number-->
+								
+								
+								
+											
+							   <tr>
+									 <td align="left">
+										 <span id="ctl00_ContentPlaceHolder1_Dps1_LblAlphaOrNumericMessage" class="LabelXSmallGrey">Enter Text Message Along with Sender Name</span>
+										 &nbsp;
+										
+									</td>
+									 <td>
+									 </td>
+								</tr>
+								
+								<tr>
+									<td align="left">
+										<table border="0" cellpadding="0" cellspacing="0">
+											<tr>
+												<td colspan="2" valign="top" align="left">
+													<select name="ctl00$ContentPlaceHolder1$Dps1$DDLPredefinedMessages" id="ctl00_ContentPlaceHolder1_Dps1_DDLPredefinedMessages" class="LabelXSmallGrey" onChange=";return setTextBoxValueFromDropDownElement(&#39;ctl00_ContentPlaceHolder1_Dps1_DDLPredefinedMessages&#39;,&#39;ctl00_ContentPlaceHolder1_Dps1_TxtMessage&#39;)">
+		<option value="Select one of predefined message(s)">Select one of predefined message(s)</option>
+		<option value="NICU Stat Help">NICU Stat Help</option>
+		<option value="&quot;911&quot; Emergency in PACU">&quot;911&quot; Emergency in PACU</option>
+		<option value="PACU full, sign outs needed">PACU full, sign outs needed</option>
+		<option value="Sign out needed in slot #">Sign out needed in slot #</option>
+		<option value="Anest paperwork not complete in slot #">Anest paperwork not complete in slot #</option>
+		<option value="No inpatient beds available">No inpatient beds available</option>
+		<option value="Orders needed for pt in slot #">Orders needed for pt in slot #</option>
+		<option value="Med/Surg restraint applied, please sign order within 12 hours">Med/Surg restraint applied, please sign order within 12 hours</option>
+		<option value="Call RPh for D/C med review #">Call RPh for D/C med review #</option>
+		<option value="Call RPh for D/C plan at ">Call RPh for D/C plan at </option>
+		<option value="Call CM for D/C plan at ">Call CM for D/C plan at </option>
+		<option value="Signature needed to D/C room#">Signature needed to D/C room#</option>
+		<option value="Documentation not complete room#">Documentation not complete room#</option>
+		<option value="Call RPh for med order at ">Call RPh for med order at </option>
+		<option value="ON ECMO in">ON ECMO in</option>
+		<option value="OFF ECMO">OFF ECMO</option>
+		<option value="Pharmacy Carts are ready">Pharmacy Carts are ready</option>
+		<option value="Admit to OBS status order needed for pt ____">Admit to OBS status order needed for pt ____</option>
+		<option value="Admit to IP status order needed room# ____">Admit to IP status order needed room# ____</option>
+		<option value="OBS pt ____ w/b at 23hr mark at ____">OBS pt ____ w/b at 23hr mark at ____</option>
+		<option value="OBS pt ____  over 23hr mark at ____">OBS pt ____  over 23hr mark at ____</option>
+		<option value="Patient ____ in PACU at ____ with epidural, text page beeper 8681 with bed assignment">Patient ____ in PACU at ____ with epidural, text page beeper 8681 with bed assig...</option>
+		<option value="Patient ____ in PACU at ____ awake, text page beeper 8681 with bed assignment">Patient ____ in PACU at ____ awake, text page beeper 8681 with bed assignment</option>
+		<option value="Patient ____ in PACU at ____ intubated, text page beeper 8681 with bed assignment">Patient ____ in PACU at ____ intubated, text page beeper 8681 with bed assignmen...</option>
+		<option value="Patient ____ in PACU at ____ needs nerve block in PACU, text page beeper 8681 with bed assignment">Patient ____ in PACU at ____ needs nerve block in PACU, text page beeper 8681 wi...</option>
+		<option value="Patient ____ in PACU at ____ going OPSC/FDS, text page beeper 8681 with bed assignment">Patient ____ in PACU at ____ going OPSC/FDS, text page beeper 8681 with bed assi...</option>
+		<option value="Please come to the Outpatient-Lab.  Thank you.">Please come to the Outpatient-Lab.  Thank you.</option>
+		<option value="Please call 3-5038 regarding a sick call - Staffing Office">Please call 3-5038 regarding a sick call - Staffing Office</option>
+		<option value="Please report to Radiology.  Thank you.">Please report to Radiology.  Thank you.</option>
+		<option value="Please call ____ regarding your Health Link issue. ____.">Please call ____ regarding your Health Link issue. ____.</option>
+		<option value="The procedure has started.">The procedure has started.</option>
+		<option value="El procedimiento ha comenzado.">El procedimiento ha comenzado.</option>
+		<option value="The procedure is going well at this time.">The procedure is going well at this time.</option>
+		<option value="El procedimiento va bien en esto momento">El procedimiento va bien en esto momento</option>
+		<option value="Please return to the 3rd floor nurses station">Please return to the 3rd floor nurses station</option>
+		<option value="Por Favor, regrese a la estacion de enfermeras en el 3er piso">Por Favor, regrese a la estacion de enfermeras en el 3er piso</option>
+		<option value="EDO Initial inter-professional care conference scheduled for____at____in____.">EDO Initial inter-professional care conference scheduled for____at____in____.</option>
+		<option value="EDO Daily Rounds starting at____on____.">EDO Daily Rounds starting at____on____.</option>
+		<option value="EDO care conference scheduled for____at____in____.">EDO care conference scheduled for____at____in____.</option>
+		<option value="Please return to Pediatric Sedation on 1st floor">Please return to Pediatric Sedation on 1st floor</option>
+		<option value="Walk In for _________. Non urgent">Walk In for _________. Non urgent</option>
+		<option value="Please Return To OutPatient Surgery ">Please Return To OutPatient Surgery </option>
+		<option value=" Please Return to 1st Day Surgery "> Please Return to 1st Day Surgery </option>
+
+	</select></td>
+											</tr>
+
+											<tr>
+													<!--for reason of changing dynamically properties Td elements(TdMessageId1, TdMessageId2, TdMessageId2_1, TdMessageId2_2) are set as server side elements-->
+													<td id="ctl00_ContentPlaceHolder1_Dps1_TdMessageId1" style="height: 66px">
+														<textarea name="ctl00$ContentPlaceHolder1$Dps1$TxtMessage" rows="2" cols="20" id="ctl00_ContentPlaceHolder1_Dps1_TxtMessage" class="TextBox" onfocus="numberofcharacters(&#39;ctl00_ContentPlaceHolder1_Dps1_TxtMessage&#39;,120,&#39;divcharactersremaining&#39;)" onkeyup="numberofcharacters(&#39;ctl00_ContentPlaceHolder1_Dps1_TxtMessage&#39;,120,&#39;divcharactersremaining&#39;);" style="height:80px;width:350px;">
+</textarea></td>
+	
+													<td id="ctl00_ContentPlaceHolder1_Dps1_TdMessageId2" valign="bottom" align="left" style="height: 66px">
+														<table>
+															<tr>
+																<td id="ctl00_ContentPlaceHolder1_Dps1_TdMessageId2_1" align="left">
+																	<a onclick=" return showalertmessage(&#39;ctl00_ContentPlaceHolder1_Dps1_TxtMessage&#39;,&#39;Please, enter the message!&#39;);" id="ctl00_ContentPlaceHolder1_Dps1_BtnSend" class="BtnNormalStyle" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$Dps1$BtnSend&#39;,&#39;&#39;)" style="display:inline-block;height:20px;">
+																		<img src="Images/go_right.png" alt="" style="vertical-align: middle; border-width: 0px" height="16px" />&nbsp;Send</a>
+																	
+																</td>
+	
+															</tr>
+															<tr>
+																
+															</tr>
+														</table>
+													</td>
+	
+											</tr>
+												
+										</table>
+										
+									</td>
+									
+									<td>
+									</td>
+								</tr>
+						
+								<tr>
+									<td>
+										<div id="divcharactersremaining" class="LabelXSmallGrey"></div>
+									</td>
+									<td>
+									</td>
+								</tr>
+								
+								<tr>
+									 <td align="left" colspan="2">
+										<span id="ctl00_ContentPlaceHolder1_Dps1_LblPageMessageStatus" class="InfoMessageSmall"></span>
+									 </td>
+								</tr>
+							</table>
+						</div>
+					 
+</div>
+				 </td>
+				</tr>
+				 
+				<tr>
+					<!--List Paging-->
+				  <td colspan="2" valign="top">
+					
+					</td>
+				</tr>
+				
+				<tr>
+					<!--Formatted Paging-->
+					<td colspan="2"  valign="top">
+						
+					</td>
+				</tr>
+				
+				<!--Message priority section-->
+				
+				 <!--End of Message priority section-->
+		</table>
+</div>
+
+							 </td>
+						  </tr>
+						</table>
+						</td>
+						</tr>
+						<!-- end of Paging part-->
+						
+					   <!-- Associates-->
+					   <tr>
+						  <td align="left" colspan="2"  valign="top" ><!--class="search_boxes"-->
+								<br />
+	                     
+						  </td>
+					  </tr> 
+					  <!-- end of Associates-->
+						
+						<!-- <tr>
+						  <td align="left" colspan="2"  valign="top" >
+								<br />
+	                     
+						  </td>
+						</tr> -->
+						
+						<!-- end of Associates-->
+						
+						<!-- Duplicates-->
+						 <tr>
+						 <!-- DataList Duplicates-->
+						  <td align="left" colspan="2"  valign="top" >
+								
+						  </td>
+						</tr> 
+						
+						<tr>
+							<td align="left" colspan="2"  valign="top">
+								
+							</td>
+						</tr>
+						
+						<tr>
+						<td align="left" colspan="2"  valign="top">
+							<div>
+
+</div>
+						</td>
+						</tr>
+						<!-- end of Duplicates-->
+						
+					 </table>          
+            </td>
+			   <td style="width:50%" align="left" valign="top" class="Panel">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						
+						 <tr>
+							<td>
+								
+							</td>
+						 </tr>
+					
+						 <!-- Instructions-->
+						 <tr>
+							  <td>
+								  
+							 </td>
+						</tr>
+						<!-- end of Instructions-->
+						
+						<!-- Profile Alert-->
+						<tr>
+						  <td>
+								<div id="ctl00_ContentPlaceHolder1_PanelProfileAlert" style="width:100%;">
+	
+									<br /><!--class="right_bar"-->
+									<span id="ctl00_ContentPlaceHolder1_vLabelProfileAlert" class="text" style="display:inline-block;width:256px;"></span>
+								
+</div>
+							</td>
+						</tr>
+						<!-- end of Profile Alert-->
+						
+						<!-- Image-->
+						<tr>
+							<td align="left">
+								
+							</td>
+						</tr>
+						<!-- end of Image-->
+						
+						<tr>
+							<td align="center">
+								<br />
+							</td>
+						</tr>
+						
+						<!-- START OF FRQ all entries(simple XnFrq list)-->
+						<tr> 
+						  <td align="left" valign="middle">
+							  
+						  </td>
+						</tr>
+						
+						<!--Test with Xnfrq all entries part with GridView-->
+						<tr>
+							<td align="center" valign="middle">
+								
+							</td>
+						</tr>
+						<!--End of test with Xnfrq all entries part with GridView-->
+						
+						<!-- END OF FRQ all entries(simple XnFrq list)-->
+						
+						<!-- START OF external links-->
+						<tr>
+							<td valign="top" align="left">
+								
+							</td>
+						</tr>
+						<!-- END OF external links-->	
+				 </table>
+			  </td>
+        </tr>
+    </table>
+   
+    <!-- START OF Phone menu div-->	
+    <div id="dial_menu" style="width:80px;border:1px solid black;background-color:#c6eff7;visibility:hidden;position:absolute;line-height:30px">
+	 <div id="dialnumber" class="TableHeader"></div>
+	 <a href="javascript:dialxxx()">Dial</a>
+	 <br/>
+	 <a href="javascript:conference()">Conference</a>
+	 <br/>
+	 <a href="javascript:transfer()">Transfer</a>
+	 <br/>
+	 <a href="javascript:closedialmenu()">Hide</a>
+	 <br/>
+	 </div>
+	 <!-- END OF Phone menu div-->	
+
+	</div></td>
+  </tr>
+</table>
+    
+	
+
+<script type="text/javascript">
+//<![CDATA[
+;showdatetime('ctl00_LblTime');var ctl00_MenuNavigation_Data = new Object();
+ctl00_MenuNavigation_Data.disappearAfter = 500;
+ctl00_MenuNavigation_Data.horizontalOffset = 0;
+ctl00_MenuNavigation_Data.verticalOffset = 0;
+ctl00_MenuNavigation_Data.hoverClass = 'ctl00_MenuNavigation_9 submenu';
+ctl00_MenuNavigation_Data.hoverHyperLinkClass = 'ctl00_MenuNavigation_8 submenu';
+
+theForm.oldSubmit = theForm.submit;
+theForm.submit = WebForm_SaveScrollPositionSubmit;
+
+theForm.oldOnSubmit = theForm.onsubmit;
+theForm.onsubmit = WebForm_SaveScrollPositionOnSubmit;
+//]]>
+</script>
+</form>
+</body>
+</html>
